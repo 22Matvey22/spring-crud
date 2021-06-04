@@ -6,6 +6,7 @@ import web.models.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class JPAUserDAO implements UserDAO {
 
-    @PersistenceContext(unitName = "entityManagerFactory")
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Override
@@ -30,8 +31,9 @@ public class JPAUserDAO implements UserDAO {
 
     @Override
     @Transactional
-    public void removeUser(User user) {
-        entityManager.remove(user);
+    public void removeUserById(Long id) {
+        entityManager.createQuery("delete from User u where u.id = : id")
+                .setParameter("id", id).executeUpdate();
     }
 
     @Override
@@ -42,6 +44,7 @@ public class JPAUserDAO implements UserDAO {
     }
 
     @Override
+    @Transactional
     public void updateUser(User user) {
         entityManager.merge(user);
     }
