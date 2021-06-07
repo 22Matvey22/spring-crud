@@ -1,6 +1,7 @@
 package web.dao;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import web.models.User;
 
@@ -9,7 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-@Component
+@Repository
 @Transactional(readOnly = true)
 public class JPAUserDAO implements UserDAO {
 
@@ -39,6 +40,13 @@ public class JPAUserDAO implements UserDAO {
     public User getUserById(long id) {
         TypedQuery<User> userTypedQuery = entityManager.createQuery("select  u from User u where u.id = : id", User.class);
         userTypedQuery.setParameter("id", id);
+        return userTypedQuery.getResultList().stream().findAny().orElse(null);
+    }
+
+    @Override
+    public User getUserByUsername(String username) {
+        TypedQuery<User> userTypedQuery = entityManager.createQuery("select  u from User u where u.username = : username", User.class);
+        userTypedQuery.setParameter("username", username);
         return userTypedQuery.getResultList().stream().findAny().orElse(null);
     }
 
