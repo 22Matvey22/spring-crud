@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserService, UserDetailsService {
     private UserDAO userDAO;
 
     public UserDetailsServiceImpl() {
@@ -45,6 +45,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     public void updateUser(User user) {
         userDAO.updateUser(user);
+    }
+
+    public User getUserByUsername(String username){
+        return userDAO.getUserByUsername(username);
     }
 
     @Override
