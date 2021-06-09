@@ -21,6 +21,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
+@EnableJpaRepositories("web.repositories")
 @PropertySource("classpath:db.properties")
 @ComponentScan(value = "web")
 public class PersistenceJPAConfig {

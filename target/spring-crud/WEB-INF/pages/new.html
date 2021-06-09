@@ -6,16 +6,21 @@
 </head>
 <body>
 <form th:method="POST" th:action="@{/admin}" th:object="${user}">
+    <label for="username">Username</label>
+    <input type="text" th:field="*{username}" id="username" placeholder="Username">
+    <label for="password">Username</label>
+    <input type="text" th:field="*{password}" id="password" placeholder="Password">
+    <br>
     <label for="firstName">First name</label>
     <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name">
     <label for="lastName">Last name</label>
     <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
     <label for="email">Email</label>
     <input type="text" th:field="*{email}" id="email" placeholder="Email">
-    <label for="username">Username</label>
-    <input type="text" th:field="*{username}" id="username" placeholder="Username">
-    <label for="password">Username</label>
-    <input type="text" th:field="*{password}" id="password" placeholder="Password">
+    <br>
+    <input type=checkbox id=adminId name="roles" value="ROLE_ADMIN">
+    <label for="adminId">Админ</label>
+    <br>
     <input type="submit" value="Create User">
 </form>
 </body>

@@ -1,8 +1,7 @@
 package web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.codec.Utf8;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +34,7 @@ public class AdminController {
         return "show";
     }
 
-    @GetMapping("/admin/new")
+    @GetMapping(value = "/admin/new")
     public String createUserForm(Model model) {
         model.addAttribute("user", new User());
         return "new";
