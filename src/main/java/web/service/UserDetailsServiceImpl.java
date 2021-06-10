@@ -11,9 +11,7 @@ import web.dao.UserDAO;
 import web.models.Role;
 import web.models.User;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,7 +27,6 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
     }
 
     public void addUser(User user) {
-        user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
         userDAO.addUser(user);
     }
 

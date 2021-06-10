@@ -7,7 +7,21 @@
 </head>
 <body>
 <div>
-    <p th:text="${user.getFirstName()}"></p>
+    <div>
+        <p>Имя:</p>
+        <p th:text="${user.getFirstName()}"></p>
+    </div>
+    <div>
+    </div>
+        <p>Фамилия:</p>
+        <p th:text="${user.getLastName()}"></p>
+    <div>
+        <p>Email:</p>
+        <p th:text="${user.getEmail()}"></p>
+    </div>
+    <br>
+    <br>
+    <a href="/"> На главную</a>
 </div>
 </body>
 </html>
