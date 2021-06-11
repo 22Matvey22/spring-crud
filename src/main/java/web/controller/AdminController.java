@@ -76,7 +76,17 @@ public class AdminController {
 
     @PatchMapping("/admin/{id}")
     public String update(@ModelAttribute("user") User user,
-                         @PathVariable("id") Long id) {
+                         @PathVariable("id") Long id,
+                         @RequestParam(value = "rolesId") List<String> roles) {
+        Long idRole = Long.parseLong(roles.get(0));
+        if (idRole != 1) {
+            Set<Role> rolesUser = new HashSet<>();
+            rolesUser.add(roleRepository.getById(1L)); //добавляю ROLE_USER
+            rolesUser.add(roleRepository.getById(idRole)); //добавляю роль, которую выберет пользователь
+            user.setRoles(rolesUser);
+        } else {
+            user.setRoles(Collections.singleton(roleRepository.getById(1L))); //добавляю только ROLE_USER
+        }
         userService.updateUser(user);
         return "redirect:/admin";
     }
