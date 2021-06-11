@@ -6,22 +6,33 @@
 </head>
 <body>
 <form th:method="POST" th:action="@{/admin}" th:object="${user}">
-    <label for="username">Username</label>
-    <input type="text" name="username" id="username" placeholder="Username">
-    <label for="password">Username</label>
-    <input type="text" name="password" id="password" placeholder="Password">
-    <br>
-    <label for="firstName">First name</label>
-    <input type="text" name="firstName" id="firstName" placeholder="First Name">
-    <label for="lastName">Last name</label>
-    <input type="text" name="lastName" id="lastName" placeholder="Last Name">
-    <label for="email">Email</label>
-    <input type="text" name="email" id="email" placeholder="Email">
-    <br>
-    <input type=checkbox id=adminId name="role" value="ROLE_ADMIN">
-    <label for="adminId">Админ</label>
-    <br>
-    <input type="submit" value="Create User">
+    <h2>Создание пользователя</h2>
+    <table>
+        <thead>
+        <tr>
+            <th><label for="username">Логин</label></th>
+            <th><label for="password">Пароль</label></th>
+            <th><label for="firstName">Имя</label></th>
+            <th><label for="lastName">Фамилия</label></th>
+            <th><label for="email">Email</label></th>
+            <th>Роль</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><input type="text" name="username" id="username" placeholder="Username"></td>
+            <td><input type="text" name="password" id="password" placeholder="Password"></td>
+            <td><input type="text" name="firstName" id="firstName" placeholder="First Name"></td>
+            <td><input type="text" name="lastName" id="lastName" placeholder="Last Name"></td>
+            <td><input type="text" name="email" id="email" placeholder="Email"></td>
+            <td><select id="rolesId" name="rolesId">
+                <option value="1" checked>Пользователь</option>
+                <option value="2">Админ</option>
+            </select></td>
+            <td><input type="submit" value="Create User"></td>
+        </tr>
+        </tbody>
+    </table>
 </form>
 </body>
 </html>
